@@ -1,6 +1,6 @@
 cosmos_root=$(git rev-parse --show-toplevel)
 venv_folder=$cosmos_root/.venv
-scripts_folder=$cosmos_root/cosmos_transfer1/scripts
+scripts_folder=$cosmos_root/scripts
 
 echo "Formatting $cosmos_root"
 if [ ! -d "$scripts_folder" ]; then
