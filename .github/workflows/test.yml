@@ -4,11 +4,10 @@ on:
   workflow_run:
     workflows: ["Lint"]
     types:
-      - completed
+      - completed  # This triggers even if Lint fails
 
 jobs:
   check-video-links:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
