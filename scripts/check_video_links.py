@@ -17,9 +17,17 @@ def extract_video_urls(md_file):
 
 def check_video_url(url):
     try:
-        response = requests.head(url, allow_redirects=True, timeout=10)
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/91.0.4472.124 Safari/537.36"
+            ),
+            "Accept": "*/*"
+        }
+        response = requests.get(url, headers=headers, stream=True, timeout=10)
         content_type = response.headers.get('Content-Type', '')
-        if response.status_code == 200 and 'video' in content_type:
+        if response.status_code == 200 and 'video' in content_type.lower():
             print(f"✅ Video OK: {url}")
             return True
         else:
